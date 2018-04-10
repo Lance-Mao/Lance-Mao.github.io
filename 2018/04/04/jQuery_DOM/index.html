@@ -1,0 +1,1341 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="jQuery,DOM," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Lance Mao" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="DOM节点的创建jQuery节点创建与属性的处理创建元素节点：1$(&amp;quot;&amp;lt;div&amp;gt;&amp;lt;/div&amp;gt;&amp;quot;)">
+<meta name="keywords" content="jQuery,DOM">
+<meta property="og:type" content="article">
+<meta property="og:title" content="jquery-dom操作">
+<meta property="og:url" content="http://mlwblog.cn/2018/04/04/jQuery_DOM/index.html">
+<meta property="og:site_name" content="Lance Mao">
+<meta property="og:description" content="DOM节点的创建jQuery节点创建与属性的处理创建元素节点：1$(&amp;quot;&amp;lt;div&amp;gt;&amp;lt;/div&amp;gt;&amp;quot;)">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5207977-bde4b23c20f0b553.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5207977-995c74cca6798ac6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2018-04-04T13:24:12.060Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="jquery-dom操作">
+<meta name="twitter:description" content="DOM节点的创建jQuery节点创建与属性的处理创建元素节点：1$(&amp;quot;&amp;lt;div&amp;gt;&amp;lt;/div&amp;gt;&amp;quot;)">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/5207977-bde4b23c20f0b553.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://mlwblog.cn/2018/04/04/jQuery_DOM/"/>
+
+
+
+
+
+  <title>jquery-dom操作 | Lance Mao</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <a href="https://github.com/Lance-Mao" class="github-corner" aria-label="View source on Github"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Lance Mao</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description"></h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://mlwblog.cn/2018/04/04/jQuery_DOM/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Lance Mao">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://upload-images.jianshu.io/upload_images/5207977-02f9da755067f1bd.png?imageMogr2/auto-orie">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lance Mao">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">jquery-dom操作</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-04T14:50:11+08:00">
+                2018-04-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  3,121
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  13
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="https://upload-images.jianshu.io/upload_images/5207977-bde4b23c20f0b553.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<h2 id="DOM节点的创建"><a href="#DOM节点的创建" class="headerlink" title="DOM节点的创建"></a>DOM节点的创建</h2><h3 id="jQuery节点创建与属性的处理"><a href="#jQuery节点创建与属性的处理" class="headerlink" title="jQuery节点创建与属性的处理"></a>jQuery节点创建与属性的处理</h3><h4 id="创建元素节点："><a href="#创建元素节点：" class="headerlink" title="创建元素节点："></a>创建元素节点：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(&quot;&lt;div&gt;&lt;/div&gt;&quot;)</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<h4 id="创建为属性节点："><a href="#创建为属性节点：" class="headerlink" title="创建为属性节点："></a>创建为属性节点：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(&quot;&lt;div id=&apos;test&apos; class=&apos;aaron&apos;&gt;TEXT&lt;/div&gt;&quot;)</span><br></pre></td></tr></table></figure>
+<h2 id="DOM节点的插入"><a href="#DOM节点的插入" class="headerlink" title="DOM节点的插入"></a>DOM节点的插入</h2><h3 id="DOM内部插入append-与appendTo"><a href="#DOM内部插入append-与appendTo" class="headerlink" title="DOM内部插入append()与appendTo()"></a>DOM内部插入append()与appendTo()</h3><ul>
+<li><p>append：这个操作与对指定的元素执行原生的appendChild方法，将它们添加到文档中的情况类似。</p>
+</li>
+<li><p>appendTo：实际上，使用这个方法是颠倒了常规的$(A).append(B)的操作，即不是把B追加到A中，而是把A追加到B中。</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line"></span><br><span class="line">    $(&quot;#bt1&quot;).on(&apos;click&apos;, function() &#123;</span><br><span class="line">		//.append(), 内容在方法的后面，</span><br><span class="line">		//参数是将要插入的内容。</span><br><span class="line">		$(&quot;.content&quot;).append(&apos;&lt;div class=&quot;append&quot;&gt;通过append方法添加的元素&lt;/div&gt;&apos;)</span><br><span class="line">	&#125;)</span><br><span class="line"></span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line"></span><br><span class="line">	$(&quot;#bt2&quot;).on(&apos;click&apos;, function() &#123;</span><br><span class="line">		//.appendTo()刚好相反，内容在方法前面，</span><br><span class="line">		//无论是一个选择器表达式 或创建作为标记上的标记</span><br><span class="line">		//它都将被插入到目标容器的末尾。</span><br><span class="line">		$(&apos;&lt;div class=&quot;appendTo&quot;&gt;通过appendTo方法添加的元素&lt;/div&gt;&apos;).appendTo($(&quot;.content&quot;))</span><br><span class="line">	&#125;)</span><br><span class="line"></span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="DOM外部插入after-与before"><a href="#DOM外部插入after-与before" class="headerlink" title="DOM外部插入after()与before()"></a>DOM外部插入after()与before()</h3><ul>
+<li><p>.after(content)：在匹配元素集合中的每个元素后面插入参数所指定的内容，作为其兄弟节点</p>
+</li>
+<li><p>.before(content)：与上同理，只是在匹配元素前面插入内容</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">$(&quot;#bt1&quot;).on(&apos;click&apos;, function() &#123;</span><br><span class="line">    //在匹配test1元素集合中的每个元素前面插入p元素</span><br><span class="line">    $(&quot;.test1&quot;).before(&apos;&lt;p style=&quot;color:red&quot;&gt;before,在匹配元素之前增加&lt;/p&gt;&apos;, &apos;&lt;p style=&quot;color:red&quot;&gt;多参数&lt;/p&gt;&apos;)</span><br><span class="line">&#125;)</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">$(&quot;#bt2&quot;).on(&apos;click&apos;, function() &#123;</span><br><span class="line">    //在匹配test1元素集合中的每个元素后面插入p元素</span><br><span class="line">    $(&quot;.test2&quot;).after(&apos;&lt;p style=&quot;color:blue&quot;&gt;after,在匹配元素之后增加&lt;/p&gt;&apos;, &apos;&lt;p style=&quot;color:blue&quot;&gt;多参数&lt;/p&gt;&apos;)</span><br><span class="line"></span><br><span class="line">&#125;)</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="DOM内部插入prepend-与prependTo"><a href="#DOM内部插入prepend-与prependTo" class="headerlink" title="DOM内部插入prepend()与prependTo()"></a>DOM内部插入prepend()与prependTo()</h3><ul>
+<li><p>prepend：向每个匹配的元素内部前置内容</p>
+</li>
+<li><p>prepend：把所有匹配的元素前置到另一个指定的元素集合中</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=&quot;en&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;title&gt;Title&lt;/title&gt;</span><br><span class="line">    &lt;script src=&quot;https://cdn.bootcss.com/jquery/3.3.1/jquery.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">    &lt;script src=&quot;https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">    &lt;style&gt;</span><br><span class="line">        .aaron1&#123;</span><br><span class="line">            border: 1px solid red;</span><br><span class="line">        &#125;</span><br><span class="line">        .aaron2&#123;</span><br><span class="line">            border: 1px solid blue;</span><br><span class="line">        &#125;</span><br><span class="line">        .aaron2 p &#123;</span><br><span class="line">            color: #FF2255;</span><br><span class="line">        &#125;</span><br><span class="line">    &lt;/style&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;h2&gt;通过prepend与prependTo添加元素&lt;/h2&gt;</span><br><span class="line">&lt;button id=&quot;bt1&quot;&gt;点击通过jQuery的prepend添加元素&lt;/button&gt;</span><br><span class="line">&lt;button id=&quot;bt2&quot;&gt;点击通过jQuery的prependTo添加元素&lt;/button&gt;</span><br><span class="line">&lt;div class=&quot;aaron1&quot;&gt;</span><br><span class="line">    &lt;p&gt;测试prepend&lt;/p&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;div class=&quot;aaron2&quot;&gt;</span><br><span class="line">    &lt;p&gt;测试prependTo&lt;/p&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">    $(&quot;#bt1&quot;).on(&apos;click&apos;, function() &#123;</span><br><span class="line">        //找到class=&quot;aaron1&quot;的div节点</span><br><span class="line">        //然后通过prepend在内部的首位置添加一个新的p节点</span><br><span class="line">        $(&apos;.aaron1&apos;)</span><br><span class="line">            .prepend(&apos;&lt;p&gt;prepend增加的p元素&lt;/p&gt;&apos;)</span><br><span class="line">    &#125;)</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">    $(&quot;#bt2&quot;).on(&apos;click&apos;, function() &#123;</span><br><span class="line">        //找到class=&quot;aaron2&quot;的div节点</span><br><span class="line">        //然后通过prependTo内部的首位置添加一个新的p节点</span><br><span class="line">        $(&apos;&lt;p&gt;prependTo增加的p元素&lt;/p&gt;&apos;)</span><br><span class="line">            .prependTo($(&apos;.aaron2&apos;))</span><br><span class="line">    &#125;)</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>效果图<br><img src="https://upload-images.jianshu.io/upload_images/5207977-995c74cca6798ac6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Screenshot from 2018-04-04 16-44-17.png"></p>
+</blockquote>
+<h4 id="总结下内部操作四个方法的区别："><a href="#总结下内部操作四个方法的区别：" class="headerlink" title="总结下内部操作四个方法的区别："></a>总结下内部操作四个方法的区别：</h4><ul>
+<li>append()向每个匹配的元素内部追加内容</li>
+<li>prepend()向每个匹配的元素内部前置内容</li>
+<li>appendTo()把所有匹配的元素追加到另一个指定元素的集合中</li>
+<li>prependTo()把所有匹配的元素前置到另一个指定的元素集合中</li>
+</ul>
+<h3 id="DOM外部插入insertAfter-与insertBefore"><a href="#DOM外部插入insertAfter-与insertBefore" class="headerlink" title="DOM外部插入insertAfter()与insertBefore()"></a>DOM外部插入insertAfter()与insertBefore()</h3><ul>
+<li><p>insertBefore：在目标元素前面插入集合中每个匹配的元素</p>
+</li>
+<li><p>insertAfter：在目标元素后面插入集合中每个匹配的元素</p>
+</li>
+</ul>
+<h4 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h4><ul>
+<li>insertAfter将JQuery封装好的元素插入到指定元素的后面，如果元素后面有元素了，那将后面的元素后移，然后将JQuery对象插入；</li>
+<li>insertBefore将JQuery封装好的元素插入到指定元素的前面，如果元素前面有元素了，那将前面的元素前移，然后将JQuery对象插入；</li>
+</ul>
+<h2 id="DOM节点的删除"><a href="#DOM节点的删除" class="headerlink" title="DOM节点的删除"></a>DOM节点的删除</h2><h3 id="DOM节点删除之empty-的基本用法"><a href="#DOM节点删除之empty-的基本用法" class="headerlink" title="DOM节点删除之empty()的基本用法"></a>DOM节点删除之empty()的基本用法</h3><p>empty()方法跟删除不一样，empty()只移除指定元素中所有的子节点，同样移除元素里的文本。但是本身元素不被删除</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=&quot;example&quot;&gt;&lt;p&gt;测试empty()&lt;/p&gt;&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<p>通过empty处理</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(&apos;.example&apos;).empty()</span><br></pre></td></tr></table></figure>
+<p>结果</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=&quot;example&quot;&gt;&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="DOM节点删除之remove-的有参用法和无参用法"><a href="#DOM节点删除之remove-的有参用法和无参用法" class="headerlink" title="DOM节点删除之remove()的有参用法和无参用法"></a>DOM节点删除之remove()的有参用法和无参用法</h3><p>remove与empty一样，都是移除元素的方法，但是remove会将元素自身移除，同时也会移除元素内部的一切，包括绑定的事件及与该元素相关的jQuery数据。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">   $(&quot;#button1&quot;).on(&apos;click&apos;, function() &#123;</span><br><span class="line">       //删除整个 class=test1的div节点</span><br><span class="line">       $(&quot;.test1&quot;).remove()</span><br><span class="line">   &#125;)</span><br><span class="line"></span><br><span class="line">   $(&quot;#button2&quot;).on(&apos;click&apos;, function() &#123;</span><br><span class="line">       //找到所有p元素中，包含了3的元素</span><br><span class="line">       //这个也是一个过滤器的处理</span><br><span class="line">       $(&quot;p&quot;).remove(&quot;:contains(&apos;3&apos;)&quot;)</span><br><span class="line">   &#125;)</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="DOM节点删除之empty和remove区别"><a href="#DOM节点删除之empty和remove区别" class="headerlink" title="DOM节点删除之empty和remove区别"></a>DOM节点删除之empty和remove区别</h3><h4 id="empty方法"><a href="#empty方法" class="headerlink" title="empty方法"></a>empty方法</h4><ul>
+<li>严格地讲，empty()方法并不是删除节点，而是清空节点，它能清空元素中的所有后代节点</li>
+<li>empty不能删除自己本身这个节点</li>
+</ul>
+<h4 id="remove方法"><a href="#remove方法" class="headerlink" title="remove方法"></a>remove方法</h4><ul>
+<li>该节点与该节点所包含的所有后代节点将同时被删除</li>
+<li>提供传递一个筛选的表达式，删除指定合集中的元素</li>
+</ul>
+<h3 id="DOM节点删除之保留数据的删除操作detach"><a href="#DOM节点删除之保留数据的删除操作detach" class="headerlink" title="DOM节点删除之保留数据的删除操作detach()"></a>DOM节点删除之保留数据的删除操作detach()</h3><p>删除页面上的节点，但是节点上的数据与事件不会丢失。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">&lt;div&gt;</span><br><span class="line">    &lt;p&gt;P元素1，默认给绑定一个点击事件&lt;/p&gt;</span><br><span class="line">    &lt;p&gt;P元素2，默认给绑定一个点击事件&lt;/p&gt;</span><br><span class="line">    &lt;button id=&quot;bt1&quot;&gt;点击删除 p 元素&lt;/button&gt;</span><br><span class="line">    &lt;button id=&quot;bt2&quot;&gt;点击移动 p 元素&lt;/button&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">    $(&apos;p&apos;).click(function(e) &#123;</span><br><span class="line">        alert(e.target.innerHTML)</span><br><span class="line">    &#125;)</span><br><span class="line">    var p;</span><br><span class="line">    $(&quot;#bt1&quot;).click(function() &#123;</span><br><span class="line">        if (!$(&quot;p&quot;).length) return; //去重</span><br><span class="line">        //通过detach方法删除元素</span><br><span class="line">        //只是页面不可见，但是这个节点还是保存在内存中</span><br><span class="line">        //数据与事件都不会丢失</span><br><span class="line">        p = $(&quot;p&quot;).detach()</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    $(&quot;#bt2&quot;).click(function() &#123;</span><br><span class="line">        //把p元素在添加到页面中</span><br><span class="line">        //事件还是存在</span><br><span class="line">        $(&quot;body&quot;).append(p);</span><br><span class="line">    &#125;);</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="DOM节点删除之detach-和remove-区别"><a href="#DOM节点删除之detach-和remove-区别" class="headerlink" title="DOM节点删除之detach()和remove()区别"></a>DOM节点删除之detach()和remove()区别</h3><h4 id="remove：移除节点"><a href="#remove：移除节点" class="headerlink" title="remove：移除节点"></a>remove：移除节点</h4><ul>
+<li>无参数，移除自身整个节点以及该节点的内部的所有节点，包括节点上事件与数据</li>
+<li>有参数，移除筛选出的节点以及该节点的内部的所有节点，包括节点上事件与数据</li>
+</ul>
+<h4 id="detach：移除节点"><a href="#detach：移除节点" class="headerlink" title="detach：移除节点"></a>detach：移除节点</h4><ul>
+<li>移除的处理与remove一致</li>
+<li>与remove()不同的是，所有绑定的事件、附加的数据等都会保留下来<br>例如：$(“p”).detach()这一句会移除对象，仅仅是显示效果没有了。但是内存中还是存在的。当你append之后，又重新回到了文档流中。就又显示出来了。</li>
+</ul>
+<h2 id="DOM节点的复制与替换"><a href="#DOM节点的复制与替换" class="headerlink" title="DOM节点的复制与替换"></a>DOM节点的复制与替换</h2><h3 id="DOM拷贝clone"><a href="#DOM拷贝clone" class="headerlink" title="DOM拷贝clone()"></a>DOM拷贝clone()</h3><blockquote>
+<p>.clone()方法深度 复制所有匹配的元素集合，包括所有匹配元素、匹配元素的下级元素、文字节点。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">HTML部分</span><br><span class="line">&lt;div&gt;&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">JavaScript部分</span><br><span class="line">$(&quot;div&quot;).on(&apos;click&apos;, function() &#123;//执行操作&#125;)</span><br><span class="line"></span><br><span class="line">//clone处理一</span><br><span class="line">$(&quot;div&quot;).clone()   //只克隆了结构，事件丢失</span><br><span class="line"></span><br><span class="line">//clone处理二</span><br><span class="line">$(&quot;div&quot;).clone(true) //结构、事件与数据都克隆</span><br></pre></td></tr></table></figure>
+<h3 id="DOM替换replaceWith-和replaceAll"><a href="#DOM替换replaceWith-和replaceAll" class="headerlink" title="DOM替换replaceWith()和replaceAll()"></a>DOM替换replaceWith()和replaceAll()</h3><h4 id="replaceWith-newContent-：用提供的内容替换集合中所有匹配的元素并且返回被删除元素的集合"><a href="#replaceWith-newContent-：用提供的内容替换集合中所有匹配的元素并且返回被删除元素的集合" class="headerlink" title=".replaceWith( newContent )：用提供的内容替换集合中所有匹配的元素并且返回被删除元素的集合"></a>.replaceWith( newContent )：用提供的内容替换集合中所有匹配的元素并且返回被删除元素的集合</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;div&gt;</span><br><span class="line">    &lt;p&gt;第一段&lt;/p&gt;</span><br><span class="line">    &lt;p&gt;第二段&lt;/p&gt;</span><br><span class="line">    &lt;p&gt;第三段&lt;/p&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<p>替换第二段的节点与内容</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(&quot;p:eq(1)&quot;).replaceWith(&apos;&lt;a style=&quot;color:red&quot;&gt;替换第二段的内容&lt;/a&gt;&apos;)</span><br></pre></td></tr></table></figure>
+<p>结果<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;div&gt;</span><br><span class="line">    &lt;p&gt;第一段&lt;/p&gt;</span><br><span class="line">    &lt;a style=&quot;color:red&quot;&gt;替换第二段的内容&lt;/a&gt;&apos;</span><br><span class="line">    &lt;p&gt;第三段&lt;/p&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure></p>
+<h4 id="replaceAll-target-：用集合的匹配元素替换每个目标元素"><a href="#replaceAll-target-：用集合的匹配元素替换每个目标元素" class="headerlink" title=".replaceAll( target ) ：用集合的匹配元素替换每个目标元素"></a>.replaceAll( target ) ：用集合的匹配元素替换每个目标元素</h4><p>.replaceAll()和.replaceWith()功能类似，但是目标和源相反，用上述的HTML结构，我们用replaceAll处理</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(&apos;&lt;a style=&quot;color:red&quot;&gt;替换第二段的内容&lt;/a&gt;&apos;).replaceAll(&apos;p:eq(1)&apos;)</span><br></pre></td></tr></table></figure>
+<p>总结</p>
+<ul>
+<li>.replaceAll()和.replaceWith()功能类似，主要是目标和源的位置区别</li>
+<li>.replaceWith()与.replaceAll() 方法会删除与节点相关联的所有数据和事件处理程序</li>
+<li>.replaceWith()方法，和大部分其他jQuery方法一样，返回jQuery对象，所以可以和其他方法链接使用</li>
+<li>.replaceWith()方法返回的jQuery对象引用的是替换前的节点，而不是通过replaceWith/replaceAll方法替换后的节点</li>
+</ul>
+<h3 id="DOM包裹wrap-方法"><a href="#DOM包裹wrap-方法" class="headerlink" title="DOM包裹wrap()方法"></a>DOM包裹wrap()方法</h3><p>wrap方法是指在改元素的基础上为其添加一个父元素</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;p&gt;p元素&lt;/p&gt;</span><br></pre></td></tr></table></figure>
+<p>给p元素增加一个div包裹<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(&apos;p&apos;).wrap(&apos;&lt;div&gt;&lt;/div&gt;&apos;)</span><br></pre></td></tr></table></figure></p>
+<p>最后的结构<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;div&gt;</span><br><span class="line">    &lt;p&gt;p元素&lt;/p&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure></p>
+<h3 id="DOM包裹unwrap-方法"><a href="#DOM包裹unwrap-方法" class="headerlink" title="DOM包裹unwrap()方法"></a>DOM包裹unwrap()方法</h3><p>作用与wrap方法是相反的。将匹配元素集合的父级元素删除，保留自身（和兄弟元素，如果存在）在原来的位置。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;div&gt;</span><br><span class="line">    &lt;p&gt;p元素&lt;/p&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<p>找到p元素，然后调用unwrap方法，这样只会删除父辈div元素了<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(&apos;p&apos;).unwrap();</span><br></pre></td></tr></table></figure></p>
+<p>结果<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;p&gt;p元素&lt;/p&gt;</span><br></pre></td></tr></table></figure></p>
+<h3 id="DOM包裹wrapAll-方法"><a href="#DOM包裹wrapAll-方法" class="headerlink" title="DOM包裹wrapAll()方法"></a>DOM包裹wrapAll()方法</h3><p>.wrapAll( wrappingElement )：给集合中匹配的元素增加一个外面包裹HTML结构</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;p&gt;p元素&lt;/p&gt;</span><br><span class="line">&lt;p&gt;p元素&lt;/p&gt;</span><br></pre></td></tr></table></figure>
+<p>给所有p元素增加一个div包裹</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(&apos;p&apos;).wrapAll(&apos;&lt;div&gt;&lt;/div&gt;&apos;)</span><br></pre></td></tr></table></figure>
+<p>最后结果</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;div&gt;</span><br><span class="line">    &lt;p&gt;p元素&lt;/p&gt;</span><br><span class="line">    &lt;p&gt;p元素&lt;/p&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<p>.wrapAll( function ) ：一个回调函数，返回用于包裹匹配元素的 HTML 内容或 jQuery 对象。通过回调的方式可以单独处理每一个元素。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$(&apos;p&apos;).wrapAll(function() &#123;</span><br><span class="line">    return &apos;&lt;div&gt;&lt;div/&gt;&apos;;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>结果<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;div&gt;</span><br><span class="line">    &lt;p&gt;p元素&lt;/p&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;div&gt;</span><br><span class="line">    &lt;p&gt;p元素&lt;/p&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure></p>
+<h3 id="DOM包裹wrapInner-方法"><a href="#DOM包裹wrapInner-方法" class="headerlink" title="DOM包裹wrapInner()方法"></a>DOM包裹wrapInner()方法</h3><p>.wrapInner( wrappingElement )：给集合中匹配的元素的内部，增加包裹的HTML结构</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;div&gt;p元素&lt;/div&gt;</span><br><span class="line">&lt;div&gt;p元素&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<p>给所有元素增加一个p包裹</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(&apos;div&apos;).wrapInner(&apos;&lt;p&gt;&lt;/p&gt;&apos;)</span><br></pre></td></tr></table></figure>
+<p>最后的结构</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;div&gt;</span><br><span class="line">    &lt;p&gt;p元素&lt;/p&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;div&gt;</span><br><span class="line">    &lt;p&gt;p元素&lt;/p&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="jQuery遍历"><a href="#jQuery遍历" class="headerlink" title="jQuery遍历"></a>jQuery遍历</h2><h3 id="jQuery遍历之children-方法"><a href="#jQuery遍历之children-方法" class="headerlink" title="jQuery遍历之children()方法"></a>jQuery遍历之children()方法</h3><p>查找合集里面的第一级子元素，children(selector) 方法是返回匹配元素集合中每个元素的所有子元素。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=&quot;div&quot;&gt;</span><br><span class="line">    &lt;ul class=&quot;son&quot;&gt;</span><br><span class="line">        &lt;li class=&quot;grandson&quot;&gt;1&lt;/li&gt;</span><br><span class="line">    &lt;/ul&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<p>代码如果是$(“div”).children()，那么意味着只能找到ul，因为div与ul是父子关系，li与div是祖辈关系，因此无法找到。</p>
+<h3 id="jQuery遍历之find-方法"><a href="#jQuery遍历之find-方法" class="headerlink" title="jQuery遍历之find()方法"></a>jQuery遍历之find()方法</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=&quot;div&quot;&gt;</span><br><span class="line">    &lt;ul class=&quot;son&quot;&gt;</span><br><span class="line">        &lt;li class=&quot;grandson&quot;&gt;1&lt;/li&gt;</span><br><span class="line">    &lt;/ul&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<p>children是父子关系查找，find是后代关系（包含父子关系）</p>
+<h4 id="find-方法要注意的知识点："><a href="#find-方法要注意的知识点：" class="headerlink" title=".find()方法要注意的知识点："></a>.find()方法要注意的知识点：</h4><ul>
+<li>find是遍历当前元素集合中每个元素的后代。只要符合，不管是儿子辈，孙子辈都可以。</li>
+<li>与其他的树遍历方法不同，选择器表达式对于 .find() 是必需的参数。如果我们需要实现对所有后代元素的取回，可以传递通配选择器 ‘*’。</li>
+<li>find只在后代中遍历，不包括自己。</li>
+<li>选择器 context 是由 .find() 方法实现的；因此，$(‘.item-ii’).find(‘li’) 等价于 $(‘li’, ‘.item-ii’)(找到类名为item-ii的标签下的li标签)。</li>
+</ul>
+<h3 id="jQuery遍历之parents-方法"><a href="#jQuery遍历之parents-方法" class="headerlink" title="jQuery遍历之parents()方法"></a>jQuery遍历之parents()方法</h3><p>快速查找合集里面的每一个元素的所有祖辈元素</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=&quot;div&quot;&gt;</span><br><span class="line">    &lt;ul class=&quot;son&quot;&gt;</span><br><span class="line">        &lt;li class=&quot;grandson&quot;&gt;1&lt;/li&gt;</span><br><span class="line">    &lt;/ul&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<p>在li节点上找到祖 辈元素div， 这里可以用$(“li”).parents()方法</p>
+<h3 id="jQuery遍历之next-方法"><a href="#jQuery遍历之next-方法" class="headerlink" title="jQuery遍历之next()方法"></a>jQuery遍历之next()方法</h3><p>允许我们找遍元素集合中紧跟着这些元素的直接兄弟元素，并根据匹配的元素创建一个新的 jQuery 对象。</p>
+<h3 id="jQuery遍历之prev-方法"><a href="#jQuery遍历之prev-方法" class="headerlink" title="jQuery遍历之prev()方法"></a>jQuery遍历之prev()方法</h3><p>取得一个包含匹配的元素集合中每一个元素紧邻的前一个同辈元素的元素集合</p>
+<h3 id="jQuery遍历之siblings"><a href="#jQuery遍历之siblings" class="headerlink" title="jQuery遍历之siblings()"></a>jQuery遍历之siblings()</h3><p>取得一个包含匹配的元素集合中每一个元素的同辈元素的元素集合</p>
+<h3 id="jQuery遍历之add-方法"><a href="#jQuery遍历之add-方法" class="headerlink" title="jQuery遍历之add()方法"></a>jQuery遍历之add()方法</h3><p>.add()的参数可以几乎接受任何的$()，包括一个jQuery选择器表达式，DOM元素，或HTML片段引用。</p>
+<h3 id="jQuery遍历之each"><a href="#jQuery遍历之each" class="headerlink" title="jQuery遍历之each()"></a>jQuery遍历之each()</h3><ul>
+<li>each是一个for循环的包装迭代器</li>
+<li>each通过回调的方式处理，并且会有2个固定的实参，索引与元素</li>
+<li>each回调方法中的this指向当前迭代的dom元</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;ul&gt;</span><br><span class="line">    &lt;li&gt;ＡＡＡ&lt;/li&gt;</span><br><span class="line">    &lt;li&gt;ＢＢＢ&lt;/li&gt;</span><br><span class="line">    &lt;li&gt;ＣＣＣ&lt;/li&gt;</span><br><span class="line">&lt;/ul&gt;</span><br></pre></td></tr></table></figure>
+<p>开始迭代li，循环3次<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$(&quot;li&quot;).each(function(index, element) &#123;</span><br><span class="line">     index 索引 0,1,2</span><br><span class="line">     element是对应的li节点 li,li,li</span><br><span class="line">     this 指向的是li</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    Lance Mao
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://mlwblog.cn/2018/04/04/jQuery_DOM/" title="jquery-dom操作">http://mlwblog.cn/2018/04/04/jQuery_DOM/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/jQuery/" rel="tag"># jQuery</a>
+          
+            <a href="/tags/DOM/" rel="tag"># DOM</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/04/04/js_DOM/" rel="next" title="js-dom操作">
+                <i class="fa fa-chevron-left"></i> js-dom操作
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/04/05/webpack配置react开发环境/" rel="prev" title="webpack配置react开发环境">
+                webpack配置react开发环境 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zNTA2MS8xMTU5Ng=="></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://upload-images.jianshu.io/upload_images/5207977-02f9da755067f1bd.png?imageMogr2/auto-orie"
+               alt="Lance Mao" />
+          <p class="site-author-name" itemprop="name">Lance Mao</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">23</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://github.com/Lance-Mao" title="GitHub" target="_blank">GitHub</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="mailto:mlw6198@gmail.com" title="E-Mail" target="_blank">E-Mail</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.jianshu.com/u/5efea65dae1c" title="简书" target="_blank">简书</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#DOM节点的创建"><span class="nav-number">1.</span> <span class="nav-text">DOM节点的创建</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#jQuery节点创建与属性的处理"><span class="nav-number">1.1.</span> <span class="nav-text">jQuery节点创建与属性的处理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#创建元素节点："><span class="nav-number">1.1.1.</span> <span class="nav-text">创建元素节点：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#创建为属性节点："><span class="nav-number">1.1.2.</span> <span class="nav-text">创建为属性节点：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DOM节点的插入"><span class="nav-number">2.</span> <span class="nav-text">DOM节点的插入</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#DOM内部插入append-与appendTo"><span class="nav-number">2.1.</span> <span class="nav-text">DOM内部插入append()与appendTo()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DOM外部插入after-与before"><span class="nav-number">2.2.</span> <span class="nav-text">DOM外部插入after()与before()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DOM内部插入prepend-与prependTo"><span class="nav-number">2.3.</span> <span class="nav-text">DOM内部插入prepend()与prependTo()</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#总结下内部操作四个方法的区别："><span class="nav-number">2.3.1.</span> <span class="nav-text">总结下内部操作四个方法的区别：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DOM外部插入insertAfter-与insertBefore"><span class="nav-number">2.4.</span> <span class="nav-text">DOM外部插入insertAfter()与insertBefore()</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#注意"><span class="nav-number">2.4.1.</span> <span class="nav-text">注意</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DOM节点的删除"><span class="nav-number">3.</span> <span class="nav-text">DOM节点的删除</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#DOM节点删除之empty-的基本用法"><span class="nav-number">3.1.</span> <span class="nav-text">DOM节点删除之empty()的基本用法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DOM节点删除之remove-的有参用法和无参用法"><span class="nav-number">3.2.</span> <span class="nav-text">DOM节点删除之remove()的有参用法和无参用法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DOM节点删除之empty和remove区别"><span class="nav-number">3.3.</span> <span class="nav-text">DOM节点删除之empty和remove区别</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#empty方法"><span class="nav-number">3.3.1.</span> <span class="nav-text">empty方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#remove方法"><span class="nav-number">3.3.2.</span> <span class="nav-text">remove方法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DOM节点删除之保留数据的删除操作detach"><span class="nav-number">3.4.</span> <span class="nav-text">DOM节点删除之保留数据的删除操作detach()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DOM节点删除之detach-和remove-区别"><span class="nav-number">3.5.</span> <span class="nav-text">DOM节点删除之detach()和remove()区别</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#remove：移除节点"><span class="nav-number">3.5.1.</span> <span class="nav-text">remove：移除节点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#detach：移除节点"><span class="nav-number">3.5.2.</span> <span class="nav-text">detach：移除节点</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DOM节点的复制与替换"><span class="nav-number">4.</span> <span class="nav-text">DOM节点的复制与替换</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#DOM拷贝clone"><span class="nav-number">4.1.</span> <span class="nav-text">DOM拷贝clone()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DOM替换replaceWith-和replaceAll"><span class="nav-number">4.2.</span> <span class="nav-text">DOM替换replaceWith()和replaceAll()</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#replaceWith-newContent-：用提供的内容替换集合中所有匹配的元素并且返回被删除元素的集合"><span class="nav-number">4.2.1.</span> <span class="nav-text">.replaceWith( newContent )：用提供的内容替换集合中所有匹配的元素并且返回被删除元素的集合</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#replaceAll-target-：用集合的匹配元素替换每个目标元素"><span class="nav-number">4.2.2.</span> <span class="nav-text">.replaceAll( target ) ：用集合的匹配元素替换每个目标元素</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DOM包裹wrap-方法"><span class="nav-number">4.3.</span> <span class="nav-text">DOM包裹wrap()方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DOM包裹unwrap-方法"><span class="nav-number">4.4.</span> <span class="nav-text">DOM包裹unwrap()方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DOM包裹wrapAll-方法"><span class="nav-number">4.5.</span> <span class="nav-text">DOM包裹wrapAll()方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DOM包裹wrapInner-方法"><span class="nav-number">4.6.</span> <span class="nav-text">DOM包裹wrapInner()方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#jQuery遍历"><span class="nav-number">5.</span> <span class="nav-text">jQuery遍历</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#jQuery遍历之children-方法"><span class="nav-number">5.1.</span> <span class="nav-text">jQuery遍历之children()方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#jQuery遍历之find-方法"><span class="nav-number">5.2.</span> <span class="nav-text">jQuery遍历之find()方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#find-方法要注意的知识点："><span class="nav-number">5.2.1.</span> <span class="nav-text">.find()方法要注意的知识点：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#jQuery遍历之parents-方法"><span class="nav-number">5.3.</span> <span class="nav-text">jQuery遍历之parents()方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#jQuery遍历之next-方法"><span class="nav-number">5.4.</span> <span class="nav-text">jQuery遍历之next()方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#jQuery遍历之prev-方法"><span class="nav-number">5.5.</span> <span class="nav-text">jQuery遍历之prev()方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#jQuery遍历之siblings"><span class="nav-number">5.6.</span> <span class="nav-text">jQuery遍历之siblings()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#jQuery遍历之add-方法"><span class="nav-number">5.7.</span> <span class="nav-text">jQuery遍历之add()方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#jQuery遍历之each"><span class="nav-number">5.8.</span> <span class="nav-text">jQuery遍历之each()</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Lance Mao</span>
+
+  <div class="theme-info">
+    <div class="powered-by"></div>
+    <span class="post-count">博客全站共27.8k字</span>
+  </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
