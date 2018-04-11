@@ -393,7 +393,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  1,679
+                  1,699
                 </span>
               
 
@@ -431,102 +431,17 @@
 
       
         
-          
-            <h2 id="numPy"><a href="#numPy" class="headerlink" title="numPy"></a>numPy</h2><hr>
+          <h2 id="numPy"><a href="#numPy" class="headerlink" title="numPy"></a>numPy</h2><hr>
 <p><a href="https://zh.wikipedia.org/wiki/NumPy" target="_blank" rel="noopener">维基百科</a></p>
 <h3 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h3><p>NumPy引用CPython(一个使用字节码的解释器)，而在这个Python实现解释器上所写的数学算法代码通常远比编译过的相同代码要来得慢。为了解决这个难题，NumPy引入了多维数组以及可以直接有效率地操作多维数组的函数与运算符。因此在NumPy上只要能被表示为针对数组或矩阵运算的算法，其运行效率几乎都可以与编译过的等效C语言代码一样快。[1]</p>
 <p>NumPy提供了与MATLAB相似的功能与操作方式，因为两者皆为解释型语言，并且都可以让用户在针对数组或矩阵运算时提供较标量运算更快的性能。两者相较之下，MATLAB提供了大量的扩充工具箱(例如Simulink)；而NumPy则是根基于Python这个更现代、完整并且开放源代码的编程语言之上。此外NumPy也可以结合其它的Python扩充库。例如SciPy，这个库提供了更多与MATLAB相似的功能；以及Matplotlib，这是一个与MATLAB内置绘图功能类似的库。而从本质上来说，NumPy与MATLAB同样是利用BLAS与LAPACK来提供高效率的线性代数运算。</p>
-<h3 id="ndarray-数据结构"><a href="#ndarray-数据结构" class="headerlink" title="ndarray 数据结构"></a>ndarray 数据结构</h3><p>NumPy的核心功能是”ndarray”(即n-dimensional array，多维数组)数据结构。这是一个表示多维度、同质并且固定大小的数组对象。而由一个与此数组相关系的数据类型对象来描述其数组元素的数据格式(例如其字符组顺序、在存储器中占用的字符组数量、整数或者浮点数等等)。</p>
-<h2 id="数组创建"><a href="#数组创建" class="headerlink" title="数组创建"></a>数组创建</h2><hr>
-<p>NumPy的基础是一个同构的多维数据，数组中的元素可以通过下标来索引。在NumPy中，维度称之为axis（复数是axes），维度的数量称之为rank。</p>
-<p><a href="https://scipy.org/install.html" target="_blank" rel="noopener">首先获取NumPy</a>,具体方式请打开链接</p>
-<p>默认书写方式</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import numpy as np</span><br></pre></td></tr></table></figure>
-<p>创建data1、data2两个普通数组，data1的rank为1,axis的长度为6。data2的rank为2，axis的长度为4。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; data1 = [6,7.5,8,0,1]</span><br><span class="line">&gt;&gt;&gt; data2 = [[1,2,3,4],[5,6,7,8]]</span><br><span class="line">&gt;&gt;&gt; data1</span><br><span class="line">[6, 7.5, 8, 0, 1]</span><br><span class="line">&gt;&gt;&gt; data2</span><br><span class="line">[[1, 2, 3, 4], [5, 6, 7, 8]]</span><br></pre></td></tr></table></figure>
-<p>通过array函数来创建NumPy的数组</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; arr1 = np.array(data1)</span><br><span class="line">&gt;&gt;&gt; arr2 = np.array(data2)</span><br><span class="line">&gt;&gt;&gt; arr1</span><br><span class="line">array([6. , 7.5, 8. , 0. , 1. ])</span><br><span class="line">&gt;&gt;&gt; arr2</span><br><span class="line">array([[1, 2, 3, 4],</span><br><span class="line">       [5, 6, 7, 8]])</span><br></pre></td></tr></table></figure>
-<p>NumPy的数组类是ndarray，它有一个别名是 numpy.array，但这与Python标准库的array.array并不一样。后者仅仅是一个一维数组。而ndarray具有以下的属性：</p>
-<ul>
-<li>ndarray.ndim：数组的维数。在Python世界中，维数称之为rank</li>
-<li>ndarray.shape：数组的维度。这是一系列数字，长度由数组的维度（ndim）决定。例如：长度为n的一维数组的shape是n。一个n行m列的矩阵的shape是n,m</li>
-<li>ndarray.size：数组中所有元素的数量</li>
-<li>ndarray.dtype：数组中元素的类型，例如numpy.int32, numpy.int16或者numpy.float64</li>
-<li>ndarray.itemsize：数组中每个元素的大小，单位为字节</li>
-<li>ndarray.data：存储数组元素的缓冲。通常我们只需要通过下标来访问元素，而不需要访问缓冲</li>
-</ul>
-<p>ndarray属性实例</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; arr1.ndim</span><br><span class="line">1</span><br><span class="line">&gt;&gt;&gt; arr2.ndim</span><br><span class="line">2</span><br><span class="line">&gt;&gt;&gt; arr1.shape</span><br><span class="line">(5,)</span><br><span class="line">&gt;&gt;&gt; arr2.shape</span><br><span class="line">(2, 4)</span><br><span class="line">&gt;&gt;&gt; arr1.size</span><br><span class="line">5</span><br><span class="line">&gt;&gt;&gt; arr2.size</span><br><span class="line">8</span><br><span class="line">&gt;&gt;&gt; arr1.dtype</span><br><span class="line">dtype(&apos;float64&apos;)</span><br><span class="line">&gt;&gt;&gt; arr2.dtype</span><br><span class="line">dtype(&apos;int64&apos;)</span><br><span class="line">&gt;&gt;&gt; arr1.itemsize</span><br><span class="line">8</span><br><span class="line">&gt;&gt;&gt; arr2.itemsize</span><br><span class="line">8</span><br></pre></td></tr></table></figure>
-<h3 id="创建指定的数组"><a href="#创建指定的数组" class="headerlink" title="创建指定的数组"></a>创建指定的数组</h3><hr>
-<ul>
-<li>指定rank为2：</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; np.array([1, 2, 3], ndmin=2)</span><br><span class="line">array([[1, 2, 3]])</span><br></pre></td></tr></table></figure>
-<ul>
-<li>指定为complex类型的数据：</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; np.array([1, 2, 3], dtype=complex)</span><br><span class="line">array([1.+0.j, 2.+0.j, 3.+0.j])</span><br></pre></td></tr></table></figure>
-<ul>
-<li>生成数组并赋为特殊值： <ul>
-<li>ones：全1 </li>
-<li>zeros：全0 </li>
-<li>empty：随机数，取决于内存情况</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; np.zeros( (3,4) )</span><br><span class="line">array([[ 0.,  0.,  0.,  0.],</span><br><span class="line">       [ 0.,  0.,  0.,  0.],</span><br><span class="line">       [ 0.,  0.,  0.,  0.]])</span><br><span class="line">&gt;&gt;&gt; np.ones( (2,3,4), dtype=np.int16 )</span><br><span class="line">array([[[ 1, 1, 1, 1],</span><br><span class="line">        [ 1, 1, 1, 1],</span><br><span class="line">        [ 1, 1, 1, 1]],</span><br><span class="line">       [[ 1, 1, 1, 1],</span><br><span class="line">        [ 1, 1, 1, 1],</span><br><span class="line">        [ 1, 1, 1, 1]]], dtype=int16)</span><br><span class="line">&gt;&gt;&gt; np.empty( (2,3) )</span><br><span class="line">array([[  3.73603959e-262,   6.02658058e-154,   6.55490914e-260],</span><br><span class="line">       [  5.30498948e-313,   3.14673309e-307,   1.00000000e+000]])</span><br></pre></td></tr></table></figure>
-<ul>
-<li>生成均匀分布的array： <ul>
-<li>arange（最小值，最大值，步长）（左闭右开） </li>
-<li>linspace（最小值，最大值，元素数量）</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; np.arange( 10, 30, 5 )</span><br><span class="line">array([10, 15, 20, 25])</span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt; np.linspace( 0, 9, 10)</span><br><span class="line">array([0., 1., 2., 3., 4., 5., 6., 7., 8., 9.])</span><br></pre></td></tr></table></figure>
-<ul>
-<li>生成随机数random：</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; np.random.random((2,3))</span><br><span class="line">array([[0.41604856, 0.7216842 , 0.88832856],</span><br><span class="line">       [0.42092882, 0.44241471, 0.07187805]])</span><br></pre></td></tr></table></figure>
-<h2 id="Shape与操作"><a href="#Shape与操作" class="headerlink" title="Shape与操作"></a>Shape与操作</h2><p>根据已有数组进行相关的操作来产生一些新的数据结构</p>
-<ul>
-<li>reshape：根据已有数组和指定的shape，生成一个新的数组</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; b = np.array([1,2,3,4,5,6,7,8,9])</span><br><span class="line">&gt;&gt;&gt; b.reshape((3,3))</span><br><span class="line">array([[1, 2, 3],</span><br><span class="line">       [4, 5, 6],</span><br><span class="line">       [7, 8, 9]])</span><br></pre></td></tr></table></figure>
-<p>注意：形状变化的原则是数组元素不能发生改变，比如这样写就是错误的，因为数组元素发生了变化。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; b.reshape((4,3))</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  File &quot;&lt;input&gt;&quot;, line 1, in &lt;module&gt;</span><br><span class="line">ValueError: cannot reshape array of size 10 into shape (4,3)</span><br></pre></td></tr></table></figure>
-<ul>
-<li>vstack：用来将多个数组在垂直（v代表vertical）方向拼接（数组的维度必须匹配）</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; a1 = [1,2,3]</span><br><span class="line">&gt;&gt;&gt; a2 = [4,5,6]</span><br><span class="line">&gt;&gt;&gt; a3 = [7,8,9]</span><br><span class="line">&gt;&gt;&gt; np.vstack((a1,a2,a3))</span><br><span class="line">array([[1, 2, 3],</span><br><span class="line">       [4, 5, 6],</span><br><span class="line">       [7, 8, 9]])</span><br></pre></td></tr></table></figure>
-<ul>
-<li>hstack：用来将多个数组在水平（h代表horizontal）方向拼接（数组的维度必须匹配）</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">np.hstack((a1,a2,a3))</span><br><span class="line">array([1, 2, 3, 4, 5, 6, 7, 8, 9])</span><br></pre></td></tr></table></figure>
-<ul>
-<li>hsplit：用来将数组在水平方向拆分</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; b1 = np.vstack((a1,a2,a3))</span><br><span class="line">&gt;&gt;&gt; np.hsplit(b1,3)</span><br><span class="line">[array([[1],</span><br><span class="line">       [4],</span><br><span class="line">       [7]]), array([[2],</span><br><span class="line">       [5],</span><br><span class="line">       [8]]), array([[3],</span><br><span class="line">       [6],</span><br><span class="line">       [9]])]</span><br></pre></td></tr></table></figure>
-<ul>
-<li>vsplit：用来将数组在垂直方向拆分</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; np.vsplit(b1,3)</span><br><span class="line">[array([[1, 2, 3]]), array([[4, 5, 6]]), array([[7, 8, 9]])]</span><br></pre></td></tr></table></figure>
-<h2 id="相关运算"><a href="#相关运算" class="headerlink" title="相关运算"></a>相关运算</h2><ul>
-<li>基本运算</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; a = np.array( [20,30,40,50] )</span><br><span class="line">&gt;&gt;&gt; b = np.arange( 4 )</span><br><span class="line">&gt;&gt;&gt; b</span><br><span class="line">array([0, 1, 2, 3])</span><br><span class="line">&gt;&gt;&gt; c = a-b</span><br><span class="line">&gt;&gt;&gt; c</span><br><span class="line">array([20, 29, 38, 47])</span><br><span class="line">&gt;&gt;&gt; b**2</span><br><span class="line">array([0, 1, 4, 9])</span><br><span class="line">&gt;&gt;&gt; a &gt; 35</span><br><span class="line">array([False, False,  True,  True])</span><br></pre></td></tr></table></figure>
-<ul>
-<li>数组相乘，对应位置相乘</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; ab1 = np.array([[1,2],[3,4]])</span><br><span class="line">&gt;&gt;&gt; ab2 = np.array([[5,6],[7,8]])</span><br><span class="line">&gt;&gt;&gt; ab1 * ab2</span><br><span class="line">array([[ 5, 12],</span><br><span class="line">       [21, 32]])</span><br></pre></td></tr></table></figure>
-<ul>
-<li>矩阵乘法，使用dot</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; ab1.dot(ab2)</span><br><span class="line">array([[19, 22],</span><br><span class="line">       [43, 50]])</span><br></pre></td></tr></table></figure>
-<ul>
-<li>内置函数（min,max,sum)，同时可以使用axis指定对哪一维进行操作</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; b = np.arange(12).reshape(3,4)</span><br><span class="line">&gt;&gt;&gt; b</span><br><span class="line">array([[ 0,  1,  2,  3],</span><br><span class="line">       [ 4,  5,  6,  7],</span><br><span class="line">       [ 8,  9, 10, 11]])</span><br><span class="line">&gt;&gt;&gt;</span><br><span class="line">&gt;&gt;&gt; b.sum(axis=0)</span><br><span class="line">array([12, 15, 18, 21])</span><br><span class="line">&gt;&gt;&gt;</span><br><span class="line">&gt;&gt;&gt; b.min(axis=1)</span><br><span class="line">array([0, 4, 8])</span><br><span class="line">&gt;&gt;&gt;</span><br><span class="line">&gt;&gt;&gt; b.cumsum(axis=1)</span><br><span class="line">array([[ 0,  1,  3,  6],</span><br><span class="line">       [ 4,  9, 15, 22],</span><br><span class="line">       [ 8, 17, 27, 38]])</span><br></pre></td></tr></table></figure>
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/04/10/python_numPy学习/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
