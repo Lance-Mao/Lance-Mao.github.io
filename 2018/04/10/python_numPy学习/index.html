@@ -104,10 +104,12 @@
 <meta property="og:site_name" content="Lance Mao">
 <meta property="og:description" content="numPy 维基百科 特点NumPy引用CPython(一个使用字节码的解释器)，而在这个Python实现解释器上所写的数学算法代码通常远比编译过的相同代码要来得慢。为了解决这个难题，NumPy引入了多维数组以及可以直接有效率地操作多维数组的函数与运算符。因此在NumPy上只要能被表示为针对数组或矩阵运算的算法，其运行效率几乎都可以与编译过的等效C语言代码一样快。[1] NumPy提供了与MATL">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-11T05:48:27.521Z">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5207977-1cc74304a56779c9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2018-04-12T08:41:26.711Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python_numPy学习">
 <meta name="twitter:description" content="numPy 维基百科 特点NumPy引用CPython(一个使用字节码的解释器)，而在这个Python实现解释器上所写的数学算法代码通常远比编译过的相同代码要来得慢。为了解决这个难题，NumPy引入了多维数组以及可以直接有效率地操作多维数组的函数与运算符。因此在NumPy上只要能被表示为针对数组或矩阵运算的算法，其运行效率几乎都可以与编译过的等效C语言代码一样快。[1] NumPy提供了与MATL">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/5207977-1cc74304a56779c9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 
 
 
@@ -399,7 +401,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  1,699
+                  1,712
                 </span>
               
 
@@ -531,6 +533,10 @@
 <li>内置函数（min,max,sum)，同时可以使用axis指定对哪一维进行操作</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; b = np.arange(12).reshape(3,4)</span><br><span class="line">&gt;&gt;&gt; b</span><br><span class="line">array([[ 0,  1,  2,  3],</span><br><span class="line">       [ 4,  5,  6,  7],</span><br><span class="line">       [ 8,  9, 10, 11]])</span><br><span class="line">&gt;&gt;&gt;</span><br><span class="line">&gt;&gt;&gt; b.sum(axis=0)</span><br><span class="line">array([12, 15, 18, 21])</span><br><span class="line">&gt;&gt;&gt;</span><br><span class="line">&gt;&gt;&gt; b.min(axis=1)</span><br><span class="line">array([0, 4, 8])</span><br><span class="line">&gt;&gt;&gt;</span><br><span class="line">&gt;&gt;&gt; b.cumsum(axis=1)</span><br><span class="line">array([[ 0,  1,  3,  6],</span><br><span class="line">       [ 4,  9, 15, 22],</span><br><span class="line">       [ 8, 17, 27, 38]])</span><br></pre></td></tr></table></figure>
+<h2 id="书中案例"><a href="#书中案例" class="headerlink" title="书中案例"></a>书中案例</h2><hr>
+<ul>
+<li>1000个硬币累计结果和<br><img src="https://upload-images.jianshu.io/upload_images/5207977-1cc74304a56779c9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="1000个硬币累计结果和"></li>
+</ul>
 <h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><hr>
 <p>1、<a href="https://docs.scipy.org/doc/numpy/" target="_blank" rel="noopener">SciPy.org</a><br>2、<a href="https://pan.baidu.com/s/10f5Ma5IRQARS9WzizeLHTg" target="_blank" rel="noopener">利用python进行数据分析</a> 密码: s8wx</p>
 
@@ -756,7 +762,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#numPy"><span class="nav-number">1.</span> <span class="nav-text">numPy</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#特点"><span class="nav-number">1.1.</span> <span class="nav-text">特点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ndarray-数据结构"><span class="nav-number">1.2.</span> <span class="nav-text">ndarray 数据结构</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数组创建"><span class="nav-number">2.</span> <span class="nav-text">数组创建</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建指定的数组"><span class="nav-number">2.1.</span> <span class="nav-text">创建指定的数组</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Shape与操作"><span class="nav-number">3.</span> <span class="nav-text">Shape与操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#相关运算"><span class="nav-number">4.</span> <span class="nav-text">相关运算</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">5.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#numPy"><span class="nav-number">1.</span> <span class="nav-text">numPy</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#特点"><span class="nav-number">1.1.</span> <span class="nav-text">特点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ndarray-数据结构"><span class="nav-number">1.2.</span> <span class="nav-text">ndarray 数据结构</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数组创建"><span class="nav-number">2.</span> <span class="nav-text">数组创建</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建指定的数组"><span class="nav-number">2.1.</span> <span class="nav-text">创建指定的数组</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Shape与操作"><span class="nav-number">3.</span> <span class="nav-text">Shape与操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#相关运算"><span class="nav-number">4.</span> <span class="nav-text">相关运算</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#书中案例"><span class="nav-number">5.</span> <span class="nav-text">书中案例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">6.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
             
 
           </div>
@@ -787,7 +793,7 @@
 
   <div class="theme-info">
     <div class="powered-by"></div>
-    <span class="post-count">博客全站共29.5k字</span>
+    <span class="post-count">博客全站共29.6k字</span>
   </div>
 
 </div>
